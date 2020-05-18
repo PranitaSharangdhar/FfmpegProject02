@@ -58,6 +58,42 @@ public class MainActivity extends AppCompatActivity {
             Config.printLastCommandOutput(Log.INFO);
         }
 
+        String opPathCrop = folder.toString() + "/crop.mp4";
+        /*String commandCrop = "-i " + ipPath +" -filter:v \"crop=800:600:0:0\" " + opPathCrop;
 
+        //val cmd = arrayOf("-i", audio!!.path, "-ss", startTime, "-t", endTime, "-c", "copy", outputLocation.path)
+
+        int rc1 = FFmpeg.execute(commandCrop);
+
+        if (rc1 == RETURN_CODE_SUCCESS) {
+            Log.i(Config.TAG, "RTR Command execution completed successfully.");
+        } else if (rc1 == RETURN_CODE_CANCEL) {
+            Log.i(Config.TAG, "RTR Command execution cancelled by user.");
+        } else {
+            Log.i(Config.TAG, String.format("RTR Command execution failed with rc=%d and the output below.", rc1));
+            Config.printLastCommandOutput(Log.INFO);
+        }*/
+
+        crop(ipPath, 800,600, 0, 0, opPathCrop);
+
+    }
+
+    public void crop( String ipFileName, int width, int height, int x, int y, String OpFileName)
+    {
+
+        String commandCrop = "-i " + ipFileName +" -filter:v \"crop=800:600:0:0\" " + OpFileName;
+
+        //val cmd = arrayOf("-i", audio!!.path, "-ss", startTime, "-t", endTime, "-c", "copy", outputLocation.path)
+
+        int rc1 = FFmpeg.execute(commandCrop);
+
+        if (rc1 == RETURN_CODE_SUCCESS) {
+            Log.i(Config.TAG, "RTR Command execution completed successfully.");
+        } else if (rc1 == RETURN_CODE_CANCEL) {
+            Log.i(Config.TAG, "RTR Command execution cancelled by user.");
+        } else {
+            Log.i(Config.TAG, String.format("RTR Command execution failed with rc=%d and the output below.", rc1));
+            Config.printLastCommandOutput(Log.INFO);
+        }
     }
 }
